@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenvora IT | Elite Digital Services & Freelance Agency</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fiverr: {
+                            green: '#1DBF73',
+                            greenHover: '#19A463',
+                            greenLight: '#E8F8F0',
+                            dark: '#222325',
+                            slate: '#404145',
+                            muted: '#62646A',
+                            border: '#E4E5E7',
+                            bg: '#F7F7F7',
+                            cardBg: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'fiverr': '0 0.14px 2.29266px rgba(0,0,0,0.032), 0 0.34px 5.52px rgba(0,0,0,0.048), 0 0.65px 10.4px rgba(0,0,0,0.06), 0 1.15px 18.55px rgba(0,0,0,0.072), 0 2.15px 34.7px rgba(0,0,0,0.088)',
+                        'fiverr-sm': '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)',
+                        'fiverr-lg': '0 12px 30px rgba(0,0,0,0.12)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #222325;
+        }
+
+        /* Custom Card Hover & Selected States */
+        .service-card {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #E4E5E7;
+        }
+
+        .service-card:hover {
+            border-color: #1DBF73;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .service-card-selected {
+            border: 2px solid #1DBF73 !important;
+            background-color: #F4FCF7 !important;
+            box-shadow: 0 4px 16px rgba(29, 191, 115, 0.15) !important;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F7F7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5C6C9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1DBF73;
+        }
+
+        /* Hide scrollbars for pill navigation while retaining swipeability */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Accent Checkmark Animation */
+        .check-badge {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-fiverr-green selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-fiverr-dark text-white text-xs font-semibold py-2.5 px-4 text-center flex items-center justify-center gap-2">
+        <span class="bg-fiverr-green text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">Pro Agency</span>
+        <span>Need custom enterprise tech teams? Combine multiple services and calculate real-time quotes below.</span>
+        <a href="#estimator" class="underline hover:text-fiverr-green transition-colors ml-1 hidden sm:inline">Try Configurator &rarr;</a>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white border-b border-fiverr-border shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2.5 shrink-0">
+                <div class="w-10 h-10 rounded-lg bg-fiverr-green flex items-center justify-center text-white text-2xl font-black tracking-tighter">
+                    Z
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tight text-fiverr-dark">zenvora<span class="text-fiverr-green">.</span></span>
+                    <span class="text-[9px] uppercase tracking-widest text-fiverr-muted font-bold -mt-1">IT Freelance Agency</span>
+                </div>
+            </a>
+
+            <!-- Navigation Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-lg mx-6 relative">
+                <div class="relative w-full">
+                    <input type="text" id="navSearchInput" placeholder="Search web dev, AI models, UI design, DevOps..." 
+                        class="w-full pl-10 pr-24 py-2.5 bg-fiverr-bg border border-fiverr-border rounded-lg text-sm text-fiverr-dark placeholder-fiverr-muted focus:outline-none focus:border-fiverr-green focus:bg-white transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-fiverr-muted text-sm"></i>
+                    <button id="searchBtn" class="absolute right-1 top-1 bottom-1 bg-fiverr-green hover:bg-fiverr-greenHover text-white text-xs font-bold px-4 rounded-md transition-colors">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold text-fiverr-slate">
+                <a href="#services" class="hover:text-fiverr-green transition-colors">Services Catalog</a>
+                <a href="#estimator" class="hover:text-fiverr-green transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-fiverr-green animate-ping"></span>
+                    Interactive Estimator
+                </a>
+                <a href="#reviews" class="hover:text-fiverr-green transition-colors">Reviews</a>
+                <a href="#faq" class="hover:text-fiverr-green transition-colors">FAQ</a>
+            </div>
+
+            <!-- Header CTAs -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="text-xs sm:text-sm font-bold text-fiverr-slate hover:text-fiverr-green px-3 py-2">
+                    Contact Us
+                </a>
+                <a href="#estimator" class="bg-fiverr-green hover:bg-fiverr-greenHover text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Build Quote</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sub-header Category Scrollbar -->
+        <div class="border-t border-fiverr-border bg-white overflow-x-auto no-scrollbar py-2.5 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto flex items-center gap-6 text-xs font-semibold text-fiverr-slate whitespace-nowrap" id="topCategoryPills">
+                <button class="top-cat-pill text-fiverr-green font-bold border-b-2 border-fiverr-green pb-0.5" data-category="all">All Services</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="web">Web Development</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="mobile">Mobile Apps</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="uiux">UI/UX Design</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="ai">AI & ML Solutions</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="devops">Cloud & DevOps</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="marketing">Digital Marketing</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="content">Content & Copy</button>
+                <button class="top-cat-pill hover:text-fiverr-green transition-colors" data-category="security">Cybersecurity</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-b from-fiverr-bg via-white to-white py-16 md:py-24 border-b border-fiverr-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Text -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-fiverr-greenLight text-fiverr-green border border-fiverr-green/20 rounded-full px-3.5 py-1 text-xs font-bold">
+                        <i class="fa-solid fa-star text-fiverr-green"></i>
+                        <span>Vetted Top 1% Freelance Tech Agency</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-fiverr-dark tracking-tight leading-[1.15]">
+                        Find & Assemble <br class="hidden sm:inline"/>
+                        <span class="text-fiverr-green">Pro IT Services</span> On Demand
+                    </h1>
+
+                    <p class="text-fiverr-slate text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+                        Scale your startup or corporate system with verified experts in software engineering, AI, UI design, and cloud infrastructure. Select services, customize parameters, and launch.
+                    </p>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-4 grid grid-cols-3 gap-6 border-t border-fiverr-border max-w-lg">
+                        <div>
+                            <span class="text-2xl font-black text-fiverr-dark block">4.9/5.0</span>
+                            <span class="text-xs text-fiverr-muted font-medium">Over 1,200 Reviews</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black text-fiverr-green block">99.4%</span>
+                            <span class="text-xs text-fiverr-muted font-medium">On-Time Delivery</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black text-fiverr-dark block">24/7</span>
+                            <span class="text-xs text-fiverr-muted font-medium">SLA Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Feature Box -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-fiverr-border shadow-fiverr space-y-6 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-fiverr-green"></div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-fiverr-muted">Quick Agency Overview</span>
+                            <span class="bg-fiverr-greenLight text-fiverr-green text-[10px] font-bold px-2.5 py-1 rounded-full">Active Status</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-3.5 rounded-xl bg-fiverr-bg border border-fiverr-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-white border border-fiverr-border flex items-center justify-center text-fiverr-green text-lg font-bold">
+                                        <i class="fa-solid fa-cubes"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-fiverr-dark">Multi-Select Marketplace</h2>
+                                        <p class="text-xs text-fiverr-muted">Combine 8+ specialized domains</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-fiverr-muted"></i>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-fiverr-bg border border-fiverr-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-white border border-fiverr-border flex items-center justify-center text-fiverr-green text-lg font-bold">
+                                        <i class="fa-solid fa-calculator"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-fiverr-dark">Instant Quote Estimator</h2>
+                                        <p class="text-xs text-fiverr-muted">Transparent price & turnaround</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-fiverr-muted"></i>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-fiverr-bg border border-fiverr-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-white border border-fiverr-border flex items-center justify-center text-fiverr-green text-lg font-bold">
+                                        <i class="fa-solid fa-file-contract"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-fiverr-dark">Enterprise Escrow & NDA</h2>
+                                        <p class="text-xs text-fiverr-muted">100% Intellectual Property safety</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-fiverr-muted"></i>
+                            </div>
+                        </div>
+
+                        <a href="#services" class="w-full py-3 bg-fiverr-green hover:bg-fiverr-greenHover text-white text-xs font-bold uppercase tracking-wider rounded-lg text-center block transition-colors">
+                            Explore Services Below
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Multi-Select Services Marketplace -->
+    <section id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-extrabold text-fiverr-green uppercase tracking-widest block mb-1">Catalog</span>
+                    <h2 class="text-3xl font-extrabold text-fiverr-dark">Explore Freelance IT Services</h2>
+                    <p class="text-fiverr-muted text-sm mt-1">Select one or multiple services. They will be added to your live quote generator.</p>
+                </div>
+
+                <!-- Selection Actions -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <span class="text-xs font-semibold text-fiverr-slate bg-fiverr-bg px-3 py-1.5 rounded-md border border-fiverr-border" id="serviceSelectionCounter">
+                        0 selected
+                    </span>
+                    <button id="clearSelectionBtn" class="text-xs font-bold text-fiverr-slate hover:text-red-600 px-3 py-1.5 rounded-md border border-fiverr-border hover:border-red-300 transition-colors">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="flex flex-wrap items-center gap-2 mb-8" id="categoryFilterContainer">
+                <button class="cat-filter-btn bg-fiverr-dark text-white text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="all">All Services</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="web">Web Development</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="mobile">Mobile Apps</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="uiux">UI/UX Design</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="ai">AI & Machine Learning</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="devops">Cloud & DevOps</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="marketing">Digital Marketing</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="content">Content & Copywriting</button>
+                <button class="cat-filter-btn bg-fiverr-bg text-fiverr-slate hover:bg-fiverr-border text-xs font-bold px-4 py-2 rounded-full transition-colors" data-cat="security">Cybersecurity</button>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="servicesGrid">
+                
+                <!-- Card 1: Web Dev -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="web_dev" data-cat="web" data-title="Full-Stack Web Development" data-price="1500" data-days="10">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-fiverr-greenLight text-fiverr-green text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Web Dev</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">Full-Stack Web Development</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">Custom React/Next.js platforms, enterprise microservices, API integrations, and CMS solutions.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">React</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Node.js</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$1,500</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~10 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Mobile Apps -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="mobile_app" data-cat="mobile" data-title="Mobile App Development" data-price="1800" data-days="14">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-blue-50 text-blue-600 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Mobile</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">iOS & Android App Dev</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">Cross-platform React Native / Flutter apps with offline mode, push notifications, and payment gateways.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Flutter</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">React Native</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$1,800</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~14 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: UI/UX -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="uiux_design" data-cat="uiux" data-title="UI/UX & Product Design" data-price="950" data-days="6">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-purple-50 text-purple-600 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">UI/UX</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">UI/UX & Design Systems</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">User research, interactive Figma prototypes, accessible UI design systems, and conversion audits.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Figma</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Wireframing</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$950</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~6 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: AI & Machine Learning -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="ai_ml" data-cat="ai" data-title="AI & Machine Learning Solutions" data-price="2200" data-days="12">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-amber-50 text-amber-700 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">AI / ML</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">AI & LLM Integration</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">Custom OpenAI/Claude agents, Python RAG pipelines, fine-tuned AI models, and automated bots.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Python</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">LangChain</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$2,200</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~12 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Cloud & DevOps -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="devops" data-cat="devops" data-title="Cloud & DevOps Infrastructure" data-price="1300" data-days="7">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-sky-50 text-sky-600 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">DevOps</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">Cloud Architecture & DevOps</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">AWS/GCP infrastructure setup, Kubernetes, Docker, CI/CD automated deployment, and monitoring.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">AWS</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Docker</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$1,300</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~7 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 6: Digital Marketing -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="marketing" data-cat="marketing" data-title="Digital Growth & Technical SEO" data-price="800" data-days="8">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-emerald-50 text-emerald-700 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Growth</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">Technical SEO & Growth Marketing</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">Core Web Vitals SEO optimization, Google Ads funnels, conversion tracking, and analytics dashboards.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">SEO</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">PPC</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$800</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~8 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 7: Content & Copywriting -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="content" data-cat="content" data-title="Tech Content & Copywriting" data-price="600" data-days="5">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-rose-50 text-rose-600 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Copywriting</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">Tech Copywriting & Documentation</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">API documentation, technical whitepapers, SaaS landing page copy, and developer guides.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Copy</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">API Docs</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$600</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~5 Days</span>
+                    </div>
+                </div>
+
+                <!-- Card 8: Cybersecurity -->
+                <div class="service-card bg-white rounded-xl p-5 cursor-pointer flex flex-col justify-between relative group" 
+                     data-id="security" data-cat="security" data-title="Cybersecurity & Code Auditing" data-price="1600" data-days="7">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between">
+                            <span class="bg-indigo-50 text-indigo-600 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Security</span>
+                            <div class="w-6 h-6 rounded-full border border-fiverr-border flex items-center justify-center check-badge text-xs bg-white text-fiverr-green">
+                                <i class="fa-solid fa-check opacity-0"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-fiverr-dark group-hover:text-fiverr-green transition-colors">Cybersecurity & Code Audit</h3>
+                            <p class="text-fiverr-muted text-xs mt-1.5 line-clamp-3">Penetration testing, vulnerability scanning, code hardening, and SOC2 compliance audits.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">Audit</span>
+                            <span class="text-[10px] bg-fiverr-bg text-fiverr-slate px-2 py-0.5 rounded border border-fiverr-border font-medium">PenTest</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-6 border-t border-fiverr-border flex items-center justify-between text-xs font-bold">
+                        <span class="text-fiverr-muted">From <strong class="text-fiverr-dark text-sm">$1,600</strong></span>
+                        <span class="text-fiverr-slate"><i class="fa-regular fa-clock text-fiverr-muted"></i> ~7 Days</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Real-time Calculator & Configurator -->
+    <section id="estimator" class="py-16 bg-fiverr-bg border-y border-fiverr-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold text-fiverr-green uppercase tracking-widest block mb-1">Instant Configurator</span>
+                <h2 class="text-3xl font-extrabold text-fiverr-dark">Scope & Real-Time Price Estimator</h2>
+                <p class="text-fiverr-muted text-sm mt-2">Adjust complexity and urgency settings to customize your project quote in real time.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Controls Column (7 Cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Selected Items Summary Panel -->
+                    <div class="bg-white rounded-xl p-6 border border-fiverr-border shadow-fiverr-sm space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-fiverr-border">
+                            <h3 class="text-sm font-bold text-fiverr-dark flex items-center gap-2">
+                                <i class="fa-solid fa-list-check text-fiverr-green"></i> Active Services Package
+                            </h3>
+                            <span class="text-xs font-bold text-fiverr-green bg-fiverr-greenLight px-2.5 py-1 rounded" id="calcSelectedCount">
+                                0 Services Selected
+                            </span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 min-h-[40px] items-center" id="calcTagsContainer">
+                            <span class="text-xs text-fiverr-muted italic">Click services in the catalog above to add them here...</span>
+                        </div>
+                    </div>
+
+                    <!-- Scope Tier Selection -->
+                    <div class="bg-white rounded-xl p-6 border border-fiverr-border shadow-fiverr-sm space-y-4">
+                        <label class="block text-xs font-extrabold uppercase text-fiverr-dark tracking-wider">
+                            Project Tier & Scale
+                        </label>
+
+                        <div class="grid sm:grid-cols-3 gap-3">
+                            <button class="tier-btn p-3.5 rounded-lg border border-fiverr-border bg-white text-left hover:border-fiverr-green transition-all" data-tier="1">
+                                <div class="text-xs font-bold text-fiverr-dark">Basic / MVP</div>
+                                <div class="text-[11px] text-fiverr-muted mt-0.5">Core features & standard UI</div>
+                            </button>
+                            <button class="tier-btn p-3.5 rounded-lg border-2 border-fiverr-green bg-fiverr-greenLight text-left transition-all tier-selected" data-tier="1.5">
+                                <div class="text-xs font-bold text-fiverr-green">Pro Business</div>
+                                <div class="text-[11px] text-fiverr-muted mt-0.5">Custom logic & integrations</div>
+                            </button>
+                            <button class="tier-btn p-3.5 rounded-lg border border-fiverr-border bg-white text-left hover:border-fiverr-green transition-all" data-tier="2.2">
+                                <div class="text-xs font-bold text-fiverr-dark">Enterprise</div>
+                                <div class="text-[11px] text-fiverr-muted mt-0.5">High SLA & dedicated team</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Urgency -->
+                    <div class="bg-white rounded-xl p-6 border border-fiverr-border shadow-fiverr-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <label class="block text-xs font-extrabold uppercase text-fiverr-dark tracking-wider">
+                                Delivery Urgency
+                            </label>
+                            <span class="text-xs font-bold text-fiverr-green" id="urgencyText">Standard Schedule</span>
+                        </div>
+                        <input type="range" id="urgencyRange" min="1" max="1.5" step="0.25" value="1" 
+                            class="w-full h-2 bg-fiverr-bg rounded-lg appearance-none cursor-pointer accent-fiverr-green">
+                        <div class="flex justify-between text-[11px] font-semibold text-fiverr-muted">
+                            <span>Standard Speed</span>
+                            <span>Accelerated (+25%)</span>
+                            <span>Rush Sprint (+50%)</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sticky Summary Card (5 Cols) -->
+                <div class="lg:col-span-5 lg:sticky lg:top-28">
+                    <div class="bg-white rounded-xl p-6 border border-fiverr-border shadow-fiverr space-y-6 relative overflow-hidden">
+                        <div class="flex items-center justify-between pb-4 border-b border-fiverr-border">
+                            <span class="text-xs font-bold uppercase text-fiverr-muted">Estimate Breakdown</span>
+                            <span class="text-[10px] font-bold bg-fiverr-dark text-white px-2 py-0.5 rounded">Zenvora Guarantee</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-xs text-fiverr-muted font-semibold">Estimated Delivery</span>
+                                <span class="text-xl font-bold text-fiverr-dark" id="calcEstDays">~0 Days</span>
+                            </div>
+
+                            <div class="flex justify-between items-baseline pt-2">
+                                <span class="text-xs text-fiverr-muted font-semibold">Estimated Total</span>
+                                <div class="text-right">
+                                    <span class="text-3xl font-black text-fiverr-green" id="calcEstPrice">$0</span>
+                                    <span class="text-[10px] text-fiverr-muted block">Excl. taxes where applicable</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <div class="p-4 rounded-lg bg-fiverr-bg border border-fiverr-border space-y-2 text-xs text-fiverr-slate">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-fiverr-green"></i> 100% Source Code & IP Ownership</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-fiverr-green"></i> NDA & Strict Confidentiality</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-fiverr-green"></i> Free 30-Day Support SLA</div>
+                        </div>
+
+                        <!-- Sync with Contact Form Button -->
+                        <a href="#contact" id="syncToContactBtn" class="w-full py-3.5 bg-fiverr-green hover:bg-fiverr-greenHover text-white text-xs font-bold uppercase tracking-wider rounded-lg text-center block transition-all shadow-sm">
+                            Apply Package to Contact Proposal &rarr;
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 bg-white border-b border-fiverr-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-extrabold text-fiverr-green uppercase tracking-widest block mb-1">Testimonials</span>
+                    <h2 class="text-3xl font-extrabold text-fiverr-dark">Client Experiences</h2>
+                </div>
+                <div class="flex items-center gap-2 text-amber-400 text-sm font-bold">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span class="text-fiverr-dark text-xs ml-1">4.9 / 5.0 (1,200+ Reviews)</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="p-6 rounded-xl border border-fiverr-border bg-fiverr-bg space-y-4">
+                    <div class="flex items-center gap-1 text-amber-400 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-fiverr-slate text-xs leading-relaxed">
+                        "Zenvora built our React SaaS and mobile app simultaneously. Their multi-disciplinary team was extremely responsive and delivered ahead of deadline."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-fiverr-border">
+                        <div class="w-9 h-9 rounded-full bg-fiverr-green text-white font-bold flex items-center justify-center text-xs">
+                            DR
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-fiverr-dark">David Reynolds</div>
+                            <div class="text-[10px] text-fiverr-muted">CTO, FinTech Solutions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="p-6 rounded-xl border border-fiverr-border bg-fiverr-bg space-y-4">
+                    <div class="flex items-center gap-1 text-amber-400 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-fiverr-slate text-xs leading-relaxed">
+                        "The interactive estimator allowed us to budget our entire redesign beforehand. No hidden fees, great UI design, and spotless Python AI code."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-fiverr-border">
+                        <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xs">
+                            SL
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-fiverr-dark">Sarah Lin</div>
+                            <div class="text-[10px] text-fiverr-muted">Product Director, OmniHealth</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="p-6 rounded-xl border border-fiverr-border bg-fiverr-bg space-y-4">
+                    <div class="flex items-center gap-1 text-amber-400 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-fiverr-slate text-xs leading-relaxed">
+                        "Their DevOps infrastructure setup saved our AWS bill by 35%. Exceptional technical expertise with zero downtime during deployment."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-fiverr-border">
+                        <div class="w-9 h-9 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-xs">
+                            MK
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-fiverr-dark">Marcus Krüger</div>
+                            <div class="text-[10px] text-fiverr-muted">Founder, LogiTech Global</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-16 bg-white border-b border-fiverr-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-extrabold text-fiverr-green uppercase tracking-widest block mb-1">Got Questions?</span>
+                <h2 class="text-3xl font-extrabold text-fiverr-dark">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" id="faqContainer">
+                <!-- FAQ Item 1 -->
+                <div class="border border-fiverr-border rounded-xl bg-white overflow-hidden">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-fiverr-dark hover:text-fiverr-green transition-colors">
+                        <span>How does selecting multiple services work?</span>
+                        <i class="fa-solid fa-plus text-xs text-fiverr-muted transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-fiverr-slate leading-relaxed border-t border-fiverr-border/50 pt-3">
+                        You can select any number of services across categories (e.g. Web Dev + UI/UX + DevOps). Our live quote estimator aggregates base pricing, adjusts for complexity, and synchronizes the selection directly with your proposal request form.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-fiverr-border rounded-xl bg-white overflow-hidden">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-fiverr-dark hover:text-fiverr-green transition-colors">
+                        <span>Do you sign NDAs prior to project discussion?</span>
+                        <i class="fa-solid fa-plus text-xs text-fiverr-muted transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-fiverr-slate leading-relaxed border-t border-fiverr-border/50 pt-3">
+                        Yes, absolutely. We provide a standard mutual NDA before any code audit or technical strategy session to ensure your proprietary ideas and IP remain completely confidential.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-fiverr-border rounded-xl bg-white overflow-hidden">
+                    <button class="faq-toggle w-full p-5 text-left flex justify-between items-center text-sm font-bold text-fiverr-dark hover:text-fiverr-green transition-colors">
+                        <span>What post-launch support or warranty is included?</span>
+                        <i class="fa-solid fa-plus text-xs text-fiverr-muted transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-xs text-fiverr-slate leading-relaxed border-t border-fiverr-border/50 pt-3">
+                        Every Zenvora IT project includes a complimentary 30-day post-launch bug fixing and support SLA. We also offer ongoing monthly maintenance retainers if required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Corporate Contact Form -->
+    <section id="contact" class="py-16 bg-fiverr-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Information -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-extrabold text-fiverr-green uppercase tracking-widest block mb-1">Direct Inquiry</span>
+                        <h2 class="text-3xl font-extrabold text-fiverr-dark">Submit Your Proposal</h2>
+                        <p class="text-fiverr-muted text-sm mt-2">Send us your selected scope or custom message. An assigned engineering director will respond within 4 business hours.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl bg-white border border-fiverr-border flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-fiverr-greenLight text-fiverr-green flex items-center justify-center text-lg font-bold shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-extrabold text-fiverr-muted block">Direct Email</span>
+                                <span class="text-sm font-bold text-fiverr-dark">hello@zenvorait.com</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white border border-fiverr-border flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-fiverr-greenLight text-fiverr-green flex items-center justify-center text-lg font-bold shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-extrabold text-fiverr-muted block">Client Support</span>
+                                <span class="text-sm font-bold text-fiverr-dark">+1 (800) 936-ZENVORA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Contact Form Card -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-fiverr-border shadow-fiverr">
+                    <form id="proposalForm" class="space-y-5">
+                        
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-fiverr-dark uppercase mb-1.5">Full Name *</label>
+                                <input type="text" id="contactName" required placeholder="John Doe" 
+                                    class="w-full bg-fiverr-bg border border-fiverr-border rounded-lg px-3.5 py-2.5 text-sm text-fiverr-dark placeholder-fiverr-muted focus:outline-none focus:border-fiverr-green focus:bg-white transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-fiverr-dark uppercase mb-1.5">Email Address *</label>
+                                <input type="email" id="contactEmail" required placeholder="john@company.com" 
+                                    class="w-full bg-fiverr-bg border border-fiverr-border rounded-lg px-3.5 py-2.5 text-sm text-fiverr-dark placeholder-fiverr-muted focus:outline-none focus:border-fiverr-green focus:bg-white transition-all">
+                            </div>
+                        </div>
+
+                        <!-- Synchronized Scope Display -->
+                        <div class="p-3.5 rounded-lg bg-fiverr-bg border border-fiverr-border space-y-2">
+                            <span class="text-xs font-bold text-fiverr-dark uppercase block">Attached Service Scope:</span>
+                            <div class="flex flex-wrap gap-1.5" id="formScopeTags">
+                                <span class="text-xs text-fiverr-muted italic">No services pre-selected. You can submit a general inquiry below.</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-fiverr-dark uppercase mb-1.5">Project Scope / Details *</label>
+                            <textarea id="contactMessage" required rows="4" placeholder="Briefly describe your objectives, target audience, technical requirements, or deadlines..." 
+                                class="w-full bg-fiverr-bg border border-fiverr-border rounded-lg px-3.5 py-2.5 text-sm text-fiverr-dark placeholder-fiverr-muted focus:outline-none focus:border-fiverr-green focus:bg-white transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-fiverr-green hover:bg-fiverr-greenHover text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-sm">
+                            Submit Proposal Request
+                        </button>
+                    </form>
+
+                    <!-- Success Alert Box -->
+                    <div id="formSuccessAlert" class="hidden p-6 rounded-xl bg-fiverr-greenLight border border-fiverr-green text-center space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-fiverr-green text-white flex items-center justify-center text-xl mx-auto">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-fiverr-dark">Proposal Received!</h3>
+                        <p class="text-xs text-fiverr-slate max-w-sm mx-auto">Thank you for submitting your project parameters. A Zenvora account manager will get back to you shortly.</p>
+                        <button id="resetFormBtn" class="text-xs font-bold text-fiverr-green hover:underline">Submit another request</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-fiverr-dark text-white py-12 border-t border-fiverr-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-fiverr-green flex items-center justify-center text-white font-black text-sm">
+                        Z
+                    </div>
+                    <span class="text-xs font-semibold text-gray-400">© 2026 Zenvora IT Agency. Inspired by Fiverr platform design.</span>
+                </div>
+
+                <div class="flex items-center space-x-6 text-gray-400 text-base">
+                    <a href="#" class="hover:text-fiverr-green transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-fiverr-green transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-fiverr-green transition-colors" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Quote Button for Mobile -->
+    <a href="#estimator" class="fixed bottom-5 right-5 z-50 sm:hidden bg-fiverr-green text-white font-bold p-3.5 rounded-full shadow-fiverr-lg flex items-center justify-center">
+        <i class="fa-solid fa-calculator text-lg"></i>
+    </a>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Global State Store
+            const state = {
+                selectedServices: new Map(),
+                tierMultiplier: 1.5,
+                urgencyMultiplier: 1
+            };
+
+            // DOM Element References
+            const serviceCards = document.querySelectorAll('.service-card');
+            const serviceSelectionCounter = document.getElementById('serviceSelectionCounter');
+            const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+            const calcSelectedCount = document.getElementById('calcSelectedCount');
+            const calcTagsContainer = document.getElementById('calcTagsContainer');
+            const calcEstPrice = document.getElementById('calcEstPrice');
+            const calcEstDays = document.getElementById('calcEstDays');
+            const tierBtns = document.querySelectorAll('.tier-btn');
+            const urgencyRange = document.getElementById('urgencyRange');
+            const urgencyText = document.getElementById('urgencyText');
+            const formScopeTags = document.getElementById('formScopeTags');
+            const catFilterBtns = document.querySelectorAll('.cat-filter-btn');
+            const topCatPills = document.querySelectorAll('.top-cat-pill');
+            const navSearchInput = document.getElementById('navSearchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const proposalForm = document.getElementById('proposalForm');
+            const formSuccessAlert = document.getElementById('formSuccessAlert');
+            const resetFormBtn = document.getElementById('resetFormBtn');
+
+            // Toggle Service Selection
+            function toggleCard(card) {
+                const id = card.dataset.id;
+                const title = card.dataset.title;
+                const price = parseFloat(card.dataset.price);
+                const days = parseInt(card.dataset.days);
+                const checkIcon = card.querySelector('.check-badge i');
+
+                if (state.selectedServices.has(id)) {
+                    state.selectedServices.delete(id);
+                    card.classList.remove('service-card-selected');
+                    checkIcon.classList.add('opacity-0');
+                } else {
+                    state.selectedServices.set(id, { title, price, days });
+                    card.classList.add('service-card-selected');
+                    checkIcon.classList.remove('opacity-0');
+                }
+
+                updateCalculator();
+            }
+
+            // Card Click Events
+            serviceCards.forEach(card => {
+                card.addEventListener('click', () => toggleCard(card));
+            });
+
+            // Clear Selection Button
+            clearSelectionBtn.addEventListener('click', () => {
+                state.selectedServices.clear();
+                serviceCards.forEach(card => {
+                    card.classList.remove('service-card-selected');
+                    const checkIcon = card.querySelector('.check-badge i');
+                    if (checkIcon) checkIcon.classList.add('opacity-0');
+                });
+                updateCalculator();
+            });
+
+            // Filter Services by Category
+            function filterCategory(category) {
+                serviceCards.forEach(card => {
+                    const cat = card.dataset.cat;
+                    if (category === 'all' || cat === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            catFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    catFilterBtns.forEach(b => {
+                        b.classList.remove('bg-fiverr-dark', 'text-white');
+                        b.classList.add('bg-fiverr-bg', 'text-fiverr-slate');
+                    });
+                    btn.classList.remove('bg-fiverr-bg', 'text-fiverr-slate');
+                    btn.classList.add('bg-fiverr-dark', 'text-white');
+
+                    filterCategory(btn.dataset.cat);
+                });
+            });
+
+            topCatPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    topCatPills.forEach(p => {
+                        p.classList.remove('text-fiverr-green', 'font-bold', 'border-b-2', 'border-fiverr-green');
+                    });
+                    pill.classList.add('text-fiverr-green', 'font-bold', 'border-b-2', 'border-fiverr-green');
+                    filterCategory(pill.dataset.category);
+                });
+            });
+
+            // Search Bar Filtering
+            function searchServices() {
+                const query = navSearchInput.value.toLowerCase().trim();
+                serviceCards.forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    const cat = card.dataset.cat.toLowerCase();
+                    if (title.includes(query) || cat.includes(query)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            searchBtn.addEventListener('click', searchServices);
+            navSearchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') searchServices();
+            });
+
+            // Tier Buttons
+            tierBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tierBtns.forEach(b => {
+                        b.classList.remove('border-2', 'border-fiverr-green', 'bg-fiverr-greenLight', 'tier-selected');
+                        b.classList.add('border', 'border-fiverr-border', 'bg-white');
+                        const t = b.querySelector('.text-xs');
+                        if (t) t.classList.replace('text-fiverr-green', 'text-fiverr-dark');
+                    });
+
+                    btn.classList.remove('border', 'border-fiverr-border', 'bg-white');
+                    btn.classList.add('border-2', 'border-fiverr-green', 'bg-fiverr-greenLight', 'tier-selected');
+                    const titleElem = btn.querySelector('.text-xs');
+                    if (titleElem) titleElem.classList.replace('text-fiverr-dark', 'text-fiverr-green');
+
+                    state.tierMultiplier = parseFloat(btn.dataset.tier);
+                    updateCalculator();
+                });
+            });
+
+            // Urgency Slider
+            urgencyRange.addEventListener('input', (e) => {
+                const val = parseFloat(e.target.value);
+                state.urgencyMultiplier = val;
+
+                if (val === 1) urgencyText.textContent = "Standard Schedule";
+                else if (val === 1.25) urgencyText.textContent = "Accelerated Sprint (+25%)";
+                else urgencyText.textContent = "Rush Sprint (+50%)";
+
+                updateCalculator();
+            });
+
+            // Recalculate Totals & Update Displays
+            function updateCalculator() {
+                const count = state.selectedServices.size;
+                
+                serviceSelectionCounter.textContent = `${count} selected`;
+                calcSelectedCount.textContent = `${count} Service${count === 1 ? '' : 's'} Selected`;
+
+                calcTagsContainer.innerHTML = '';
+                formScopeTags.innerHTML = '';
+
+                if (count === 0) {
+                    calcTagsContainer.innerHTML = `<span class="text-xs text-fiverr-muted italic">Click services in the catalog above to add them here...</span>`;
+                    formScopeTags.innerHTML = `<span class="text-xs text-fiverr-muted italic">No services pre-selected. You can submit a general inquiry below.</span>`;
+                    calcEstPrice.textContent = '$0';
+                    calcEstDays.textContent = '~0 Days';
+                    return;
+                }
+
+                let totalBaseCost = 0;
+                let maxDays = 0;
+
+                state.selectedServices.forEach((service) => {
+                    totalBaseCost += service.price;
+                    maxDays = Math.max(maxDays, service.days);
+
+                    // Add Tag in Configurator
+                    const tag = document.createElement('span');
+                    tag.className = 'bg-fiverr-greenLight text-fiverr-green border border-fiverr-green/30 text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1.5';
+                    tag.innerHTML = `${service.title} <i class="fa-solid fa-xmark cursor-pointer hover:text-fiverr-dark" data-id="${service.id}"></i>`;
+                    calcTagsContainer.appendChild(tag);
+
+                    // Add Tag in Contact Form
+                    const formTag = tag.cloneNode(true);
+                    formScopeTags.appendChild(formTag);
+                });
+
+                // Formulas
+                const calculatedPrice = Math.round(totalBaseCost * state.tierMultiplier * state.urgencyMultiplier);
+                const calculatedDays = Math.max(3, Math.round(maxDays * (state.tierMultiplier > 1.8 ? 1.4 : 1) / (state.urgencyMultiplier > 1 ? 1.25 : 1)));
+
+                calcEstPrice.textContent = `$${calculatedPrice.toLocaleString()}`;
+                calcEstDays.textContent = `~${calculatedDays} Days`;
+            }
+
+            // FAQ Accordion Toggle
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+
+                    const isOpen = !content.classList.contains('hidden');
+                    
+                    // Close all
+                    document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.faq-toggle i').forEach(i => i.classList.replace('fa-minus', 'fa-plus'));
+
+                    if (!isOpen) {
+                        content.classList.remove('hidden');
+                        icon.classList.replace('fa-plus', 'fa-minus');
+                    }
+                });
+            });
+
+            // Form Submit Logic
+            proposalForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                proposalForm.classList.add('hidden');
+                formSuccessAlert.classList.remove('hidden');
+            });
+
+            resetFormBtn.addEventListener('click', () => {
+                proposalForm.reset();
+                proposalForm.classList.remove('hidden');
+                formSuccessAlert.classList.add('hidden');
+            });
+
+        });
+    </script>
+</body>
+</html>
